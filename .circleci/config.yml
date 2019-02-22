@@ -13,7 +13,7 @@ workflows:
     jobs:
       - build:
           filters:
-          tags:
-            only: /^trigger:.*/
-          branches:
-            ignore: /.*/
+            tags:
+              only: /^trigger:.*/
+            branches:
+              ignore: /.*/
