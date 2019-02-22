@@ -5,7 +5,9 @@ jobs:
       - image: circleci/ruby:2.3
     steps:
       - checkout
-      - run: echo "Hey there"
+      - run: 
+          cloning: git clone --depth 1 -- git@github.com:praxis/attributor.git
+          echoing: echo `ls attributor/*`
 workflows:
   version: 2
   build_and_test:
