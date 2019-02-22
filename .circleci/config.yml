@@ -3,9 +3,14 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.3
+    filters:
+      tags:
+        only: /^trigger:.*/
+      branches:
+        ignore: /.*/      
     steps:
       - checkout
-      - run: git clone --depth 1 -- git@github.com:praxis/attributor.git
+      - run: git clone -b {{ .Environment.CIRCLE_BRANCH }} --depth 1 -- git@github.com:praxis/attributor.git
       - run: echo `ls attributor/*`
 workflows:
   version: 2
