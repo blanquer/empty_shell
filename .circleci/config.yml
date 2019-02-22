@@ -3,11 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.3
-    filters:
-      tags:
-        only: /^trigger:.*/
-      branches:
-        ignore: /.*/      
     steps:
       - checkout
       - run: export REMOTE_BRANCH=`[[ $CIRCLE_TAG =~ ^trigger:(.+)$ ]] && echo ${BASH_REMATCH[1]}` && git clone -b $CIRCLE_TAG --depth 1 -- git@github.com:praxis/attributor.git
@@ -16,4 +11,9 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - build:
+          filters:
+          tags:
+            only: /^trigger:.*/
+          branches:
+            ignore: /.*/
