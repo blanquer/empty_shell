@@ -10,7 +10,7 @@ jobs:
         ignore: /.*/      
     steps:
       - checkout
-      - run: export REMOTE_BRANCH=`[[ $CIRCLE_TAG =~ ^trigger:(.+)$ ]] && echo ${BASH_REMATCH[1]}` && git clone -b CIRCLE_TAG --depth 1 -- git@github.com:praxis/attributor.git
+      - run: export REMOTE_BRANCH=`[[ $CIRCLE_TAG =~ ^trigger:(.+)$ ]] && echo ${BASH_REMATCH[1]}` && git clone -b $CIRCLE_TAG --depth 1 -- git@github.com:praxis/attributor.git
       - run: echo `ls attributor/*`
 workflows:
   version: 2
